@@ -9,12 +9,12 @@ public class Station
 	private String enseigne;
 	private List<Carburant> carburants;
 	private List<TypeService> services;
-	private Date heureOuverture;
-	private Date heureFermeture;
+	private String heureOuverture;
+	private String heureFermeture;
 	private List<String> joursFermeture;
 	private TypeRoute emplacement;
 	
-	public Station(Adresse adresse, String nom, String enseigne, List<Carburant> carburants, List<TypeService> services, Date heureOuverture, Date heureFermeture, List<String> joursFermeture,	TypeRoute emplacement)
+	public Station(Adresse adresse, String nom, String enseigne, List<Carburant> carburants, List<TypeService> services, String heureOuverture, String heureFermeture, List<String> joursFermeture,	TypeRoute emplacement)
 	{
 		this.adresse = adresse;
 		this.nom = nom;
@@ -77,22 +77,22 @@ public class Station
 		this.services = services;
 	}
 
-	public Date getHeureOuverture() 
+	public String getHeureOuverture() 
 	{
 		return heureOuverture;
 	}
 
-	public void setHeureOuverture(Date heureOuverture) 
+	public void setHeureOuverture(String heureOuverture) 
 	{
 		this.heureOuverture = heureOuverture;
 	}
 
-	public Date getHeureFermeture() 
+	public String getHeureFermeture() 
 	{
 		return heureFermeture;
 	}
 
-	public void setHeureFermeture(Date heureFermeture) 
+	public void setHeureFermeture(String heureFermeture) 
 	{
 		this.heureFermeture = heureFermeture;
 	}

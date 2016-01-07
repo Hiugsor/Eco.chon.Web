@@ -7,93 +7,6 @@ var directionsDisplay;
 var marker;
 var currentposition;
 
-
-/*
-function initialize()
-{
-	//TEST avec coordonnées en dur
-	var afpa = new google.maps.LatLng(43.565336, 3.845629);
-	
-	// Instanciation of a DirectionService object. This object communicates with the Google Maps API Directions Service which receives direction requests and returns computed results
-	var directionsService = new google.maps.DirectionsService;
-	
-	// Instanciation of a DirectionsRenderer object. It renders directions obtained from the DirectionsService.
-	var directionsDisplay = new google.maps.DirectionsRenderer;
-
-	map = new google.maps.Map(document.getElementById('map'), {
-	center: afpa,
-	zoom: 15
-	});
-
-	//Instanciation of a InfoWindow object. It displays content (usually text or images) in a popup window above the map, at a given location. 
-	infowindow = new google.maps.InfoWindow();
-
-	
-	var request = {
-	location: afpa,
-	radius: '500',
-	query: 'station service'
-	};
-
-	//Instanciation of a PlacesService object. It contains methods related to searching for Places and retrieving details about a Place.
-	service = new google.maps.places.PlacesService(map);
-	service.textSearch(request, callback);
-	
-
-	// Function called if places found. Used to create markers.
-	function callback(results, status)
-	{
-	  if (status === google.maps.places.PlacesServiceStatus.OK)
-	  {
-		for (var i = 0; i < results.length; i++)
-		{
-			var place = results[i];
-			createMarker(place);
-		}
-	  }
-	}
-
-	// Create marker on map with informations on route.
-	function createMarker(place)
-	{
-	  var placeLoc = place.geometry.location;
-	  var marker = new google.maps.Marker({
-		map: map,
-		position: place.geometry.location
-	  });
-
-	  google.maps.event.addListener(marker, 'click', function(event) {
-
-		var myLatLng = event.latLng;
-		var lat = myLatLng.lat();
-		var lng = myLatLng.lng();
-		
-		calculateAndDisplayRoute(directionsService, directionsDisplay,lat,lng);
-		infowindow.setContent(place.name);
-		infowindow.open(map, this);
-	  });
-	}
-	
-	function calculateAndDisplayRoute(directionsService, directionsDisplay,lat,lng) {
-	
-		directionsService.route({
-			origin: new google.maps.LatLng(43.565336, 3.845629),
-			destination: new google.maps.LatLng(lat, lng),
-			travelMode: google.maps.TravelMode.DRIVING
-			}, function(response, status) {
-			if (status === google.maps.DirectionsStatus.OK) {
-			  directionsDisplay.setDirections(response);
-			} else {
-			  window.alert('Directions request failed due to ' + status);
-			}
-		});
-	}
-	directionsDisplay.setMap(map);
-}
-*/
-
-
-
 function initialize()
 {
 	// Instanciation of a DirectionService object. This object communicates with the Google Maps API Directions Service which receives direction requests and returns computed results
@@ -219,8 +132,9 @@ function createMarker(place)
 				infowindow.setContent(place.name);
 				infowindow.open(map, this);
 			  });
-		  
+		  			  
 		  directionsDisplay.setMap(map);
+		  
       },
       error: function (request, status, error) {
           alert(request.responseText);
@@ -230,7 +144,7 @@ function createMarker(place)
 
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay,lati,lng)
-{
+{	
 	directionsService.route({
 		origin: new google.maps.LatLng(myLat, myLong),
 		destination: new google.maps.LatLng(lati, lng),

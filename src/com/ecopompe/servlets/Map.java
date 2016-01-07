@@ -24,7 +24,7 @@ public class Map extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	public static final String VUE = "/WEB-INF/map.jsp";
-	public static final String MARKER_ICON = "img/Logo_EcoPomp40.png";
+	public static final String MARKER_ICON = "bootstrap/img/Logo_EcoPomp40.png";
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -33,9 +33,7 @@ public class Map extends HttpServlet
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		//String latitude = request.getParameter("latitude");
-		//String longitude = request.getParameter("longitude");
-		
+				
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
         JsonObject myObj = new JsonObject();
