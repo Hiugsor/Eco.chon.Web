@@ -8,6 +8,6 @@
 carburants</title>
 </head>
 <body>
-
+  Ici, il y aura les statistiques sur les carburants !!
 </body>
 </html>

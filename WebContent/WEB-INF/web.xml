@@ -32,6 +32,22 @@
     <servlet-name>Map</servlet-name>
     <url-pattern>/map</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Infos</servlet-name>
+    <servlet-class>com.ecopompe.servlets.Infos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Infos</servlet-name>
+    <url-pattern>/infos</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ListePompes</servlet-name>
+    <servlet-class>com.ecopompe.servlets.ListePompes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListePompes</servlet-name>
+    <url-pattern>/listepompes</url-pattern>
+  </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>

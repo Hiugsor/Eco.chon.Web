@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/ListePompes")
 public class ListePompes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static final String VUE = "/WEB-INF/listepompes.jsp";
        
     public ListePompes()
     {
@@ -18,7 +19,8 @@ public class ListePompes extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
 /*

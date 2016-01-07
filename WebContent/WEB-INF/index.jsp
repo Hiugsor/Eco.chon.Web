@@ -18,8 +18,11 @@
 		<%@include file="header.jsp" %>
 		<div class="container-fluid text-center" id="divbas">    
   			<div class="row content">
-				<%@include file="sideform.jsp" %>		
-				<%@include file="map.jsp" %>
+				<%@include file="sideform.jsp" %>
+				
+				<div class="col-lg-10" id="paddingMap">
+				  <%@include file="map.jsp" %>
+				</div>
 			</div>
 		</div>
 				

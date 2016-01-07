@@ -7,6 +7,6 @@
 <title>Affichage de la liste des stations</title>
 </head>
 <body>
-
+  Ici, il y aura la liste des stations s&eacute;lectionn&eacute;es !!
 </body>
 </html>

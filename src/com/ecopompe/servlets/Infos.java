@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Infos extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
+	public static final String VUE = "/WEB-INF/infos.jsp";
     
 	public Infos() 
 	{
@@ -19,7 +20,8 @@ public class Infos extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
 /*

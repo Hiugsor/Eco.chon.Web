@@ -13,7 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/jolion/eclipse_workspace/Eco.chon.Web/WebContent/WEB-INF/lib/gson-2.2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jolion/eclipse_workspace/Eco.chon.Web/WebContent/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Fred/Desktop/J2EE/workspace/EcoPompe/WebContent/WEB-INF/lib/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Fred/Desktop/J2EE/workspace/EcoPompe/WebContent/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
