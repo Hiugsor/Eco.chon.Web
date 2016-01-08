@@ -20,7 +20,7 @@
   			<div class="row content">
 				<%@include file="sideform.jsp" %>
 				
-				<div class="col-lg-10" id="paddingMap">
+				<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12" id="paddingMap">
 				  <%@include file="map.jsp" %>
 				</div>
 			</div>
