@@ -28,7 +28,7 @@ a, a:hover
 
 #carb, #enseigne
 {
-    width: 200px;
+    width: 150px;
     font-size: 18px;
     font-weight: bold;
     /*border: 1px solid #ccc;*/
@@ -37,7 +37,7 @@ a, a:hover
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-	background: url("bootstrap/img/MachinBox.png") no-repeat #222222;
+	background: url("bootstrap/img/MachinBox2.png") no-repeat #222222;
 	color: white;
 }
 
@@ -48,9 +48,9 @@ option
 
 #depart
 {
-	background: url("bootstrap/img/zone_text_Languette.png") no-repeat;
+	background: url("bootstrap/img/zone_text_Languette2.png") no-repeat;
 	color: white;
-	width: 200px;
+	width: 150px;
 	height: 48px;
 	border:0;
 }
@@ -63,7 +63,7 @@ option
 /* Styles pour le "slider" de distance */
 #slider
 {
-	width: 80%;
+	width: 60%;
 	height: 14px;
 }
 
@@ -157,7 +157,7 @@ input[type='range']::-moz-range-thumb
 
 #btn1, #btn2, #btn3
 {
-	padding: 0 6px;
+	padding: 0 4px;
 	height: auto;
 }
 
@@ -219,7 +219,7 @@ input[type='range']::-moz-range-thumb
 	padding: 0;
 }
 
-@media (max-width: 767px) 
+@media (max-width: 991px)
 {
   .navbar-collapse
   {
@@ -319,10 +319,10 @@ footer
 	border: 1px solid #c0c0c0;
 	border-radius: 10px;
 	background-color: #1b5b64;
-	width: 200px;
+	width: 160px;
 	height: 40px;
 	color: #ffffff;
-	font-size: 14pt;
+	font-size: 12pt;
 	font-weight: bold;
 }
 

@@ -34,7 +34,7 @@
 		<img id="logo" alt="Logo" src="bootstrap/img/Logo.png">
 	</div>
 
-    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7" id="boutons">
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8" id="boutons">
 	  <ul class="nav">
 	    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="btn1"><a href="listepompes.jsp" target="paddingMap"><img alt="Liste des Pompes" src="bootstrap/img/bouton_Liste_Off_2.png" class="imgbtn"></a></li>
 	    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="btn2"><a href="map.jsp" target="paddingMap"><img alt="Carte" src="bootstrap/img/bouton_Carte_On_2.png" class="imgbtn"></a></li>

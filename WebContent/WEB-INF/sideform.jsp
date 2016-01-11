@@ -47,7 +47,7 @@
 				<option>MAGASINS U</option>
 				<option>TOTAL</option>
 			</select> <br>
-			<br> <input type="submit" name="filtreok" id="filtreok" value="LANCER LA RECHERCHE">
+			<br> <input type="submit" name="filtreok" id="filtreok" value="CHERCHER STATIONS">
 		</form>
 	</div>
 </div>
