@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Header extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE = "/WEB-INF/header.jsp";
+	public static final String VUE = "/WEB-INF/VIEWS/INCLUDES/header.jsp";
        
     public Header() 
     {
