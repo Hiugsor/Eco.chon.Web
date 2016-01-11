@@ -23,7 +23,7 @@ import com.google.gson.JsonObject;
 public class Map extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE = "/WEB-INF/map.jsp";
+	public static final String VUE = "/WEB-INF/VIEWS/INCLUDES/map.jsp";
 	public static final String MARKER_ICON = "bootstrap/img/Logo_EcoPomp40.png";
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

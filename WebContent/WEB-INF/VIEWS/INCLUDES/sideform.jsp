@@ -9,7 +9,7 @@
 </head>
 <body>  -->
 <!--  <div class="nav nav-stacked nav-stacked-left pull-left col-lg-3" id="leftdiv"> -->
-<div class="sidenav col-lg-2" id="leftdiv">
+<div class="sidenav col-lg-2 collapse navbar-collapse" id="leftdiv">
 	<div class="well2 sidebar-nav" align="center" id="leftside">
 		<br>
 		<form action="#" method="post">
@@ -26,7 +26,6 @@
 			<br> <label id="sidetext" for="depart">Point de
 				d&eacute;part</label> <br> <input type="text" id="depart" name="depart">
 			<br>
-			<br> <br>
 			<br> <br>
 			<br> <br>
 			<br> <label id="sidetext" for="distance">Distance de<br>recherche</label> <br>
@@ -48,8 +47,7 @@
 				<option>MAGASINS U</option>
 				<option>TOTAL</option>
 			</select> <br>
-			<br> <input type="submit" name="filtreok"
-				value="LANCER LA RECHERCHE">
+			<br> <input type="submit" name="filtreok" id="filtreok" value="CHERCHER STATIONS">
 		</form>
 	</div>
 </div>

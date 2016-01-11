@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/ListePompes")
 public class ListePompes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE = "/WEB-INF/listepompes.jsp";
+	public static final String VUE = "/WEB-INF/VIEWS/INCLUDES/listepompes.jsp";
        
     public ListePompes()
     {

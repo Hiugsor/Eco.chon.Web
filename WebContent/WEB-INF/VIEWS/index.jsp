@@ -15,13 +15,13 @@
 	</head>
 	<!--  <body onload="initialize()">-->
 	<body>
-		<%@include file="header.jsp" %>
+		<%@include file="INCLUDES/header.jsp" %>
 		<div class="container-fluid text-center" id="divbas">    
   			<div class="row content">
-				<%@include file="sideform.jsp" %>
+				<%@include file="INCLUDES/sideform.jsp" %>
 				
-				<div class="col-lg-10" id="paddingMap">
-				  <%@include file="map.jsp" %>
+				<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="divprincipal">
+				  <%@include file="INCLUDES/listepompes.jsp" %>  <!-- map // listepompes // infos -->
 				</div>
 			</div>
 		</div>
