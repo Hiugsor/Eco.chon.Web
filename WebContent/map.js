@@ -15,7 +15,7 @@ function initialize()
 	directionsDisplay = new google.maps.DirectionsRenderer;
 	
 	 map = new google.maps.Map(document.getElementById("map"), {
-	        zoom: 19,
+	        zoom: 15,
 	        //center: new google.maps.LatLng(48.858565, 2.347198),
 		    mapTypeId: google.maps.MapTypeId.ROADMAP
 	 });
@@ -45,7 +45,7 @@ function successCallback(position)
 	var userMarker = new google.maps.Marker({
 	    position: currentposition,
 	    map: map,
-	    title: 'Hello World!'
+	    title: 'You are here !'
 	  });
 	
 	//Instanciation of a InfoWindow object. It displays content (usually text or images) in a popup window above the map, at a given location. 
@@ -60,6 +60,17 @@ function successCallback(position)
 	//Instanciation of a PlacesService object. It contains methods related to searching for Places and retrieving details about a Place.
 	service = new google.maps.places.PlacesService(map);
 	service.textSearch(request, callback);
+	
+	var myArea = new google.maps.Circle({
+		center:currentposition,
+		radius:15000,
+		strokeColor:"#0000FF",
+		strokeOpacity:0.5,
+		strokeWeight:2,
+		fillColor:"#0000FF",
+		fillOpacity:0.1,
+		map:map}
+	);
 }
 
 
@@ -91,7 +102,6 @@ function createMarker(place)
                    	  
     	  		//Change the center of the map to the given LatLng
     	  		map.panTo(new google.maps.LatLng(myLat, myLong));
-    	  
     	  
 	        	var image = {
 			    url: datas.pictureInfo._url,

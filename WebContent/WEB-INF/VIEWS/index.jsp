@@ -21,7 +21,7 @@
 				<%@include file="INCLUDES/sideform.jsp" %>
 				
 				<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="divprincipal">
-				  <%@include file="INCLUDES/listepompes.jsp" %>  <!-- map // listepompes // infos -->
+				  <c:import url="${main_panel}"/>
 				</div>
 			</div>
 		</div>

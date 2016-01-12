@@ -48,6 +48,18 @@
     <servlet-name>ListePompes</servlet-name>
     <url-pattern>/listepompes</url-pattern>
   </servlet-mapping>
+ 
+  <filter>
+      <filter-name>urlRewriteFilter</filter-name>
+      <filter-class>com.ecopompe.filters.UrlRewriteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+      <filter-name>urlRewriteFilter</filter-name>
+      <url-pattern>/listepompes</url-pattern>
+      <url-pattern>/infos</url-pattern>
+  </filter-mapping>
+  
+  
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
