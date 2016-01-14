@@ -29,18 +29,7 @@ public class Index extends HttpServlet
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {	
-    	
-    	//TEST 
-    	/*StationDao toto = new StationDao();
-    	ArrayList<Station> alfred = (ArrayList<Station>) toto.getStations();
-       
-    	for (Station station : alfred)
-    	{
-    		System.out.println(station.getNom());
-    	}
-    	*/    	
-    	
+    {    	
     	if (request.getParameter("panel_name")!=null)
     	{
     		switch (request.getParameter("panel_name")) {

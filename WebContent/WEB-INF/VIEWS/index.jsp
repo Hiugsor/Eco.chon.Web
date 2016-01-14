@@ -1,3 +1,5 @@
+<%@page import="com.dao.*"%>
+<%@page import="com.bo.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,6 +17,10 @@
 	</head>
 	<!--  <body onload="initialize()">-->
 	<body>
+	  <%
+	    //StationDao stdao = new StationDao();
+	    //List<Station> stations = stdao.getStations();
+	  %>
 		<%@include file="INCLUDES/header.jsp" %>
 		<div class="container-fluid text-center" id="divbas">    
   			<div class="row content">
@@ -24,11 +30,11 @@
 				  <c:import url="${main_panel}"/>
 				</div>
 			</div>
-		</div>
-				
-		
+		</div>		
 		
 	  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	  <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	  
+	
 	</body>
 </html>
