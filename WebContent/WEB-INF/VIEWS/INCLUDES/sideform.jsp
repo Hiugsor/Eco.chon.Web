@@ -1,3 +1,6 @@
+<%@page import="com.bo.*"%>
+<%@page import="com.dao.*" %>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 <!--
@@ -16,12 +19,23 @@
 			<label id="sidetext" for="carb">Carburant</label> <br> <select
 				name="carb" id="carb">
 				<option id="tous">Tous</option>
-				<option>SP 95</option>
-				<option>SP 98</option>
-				<option>Gazole</option>
-				<option>E 10</option>
-				<option>E 85</option>
-				<option>GPL</option>
+				<%
+				  StationDao stdao = new StationDao();  
+				  List<Carburant> carburants = stdao.getCarburants();
+				  List<String> typecarbs = new ArrayList<String>();
+				  
+				  for(Carburant carb : carburants)
+				  {
+					  typecarbs.add(carb.getNom());
+				  }
+				  
+				  Collections.sort(typecarbs);
+				  
+				  for(String typecarb : typecarbs)
+				  {
+					  out.println("<option value=\"" + typecarb + "\">" + typecarb + "</option>");
+				  }
+				%>
 			</select> <br>
 			<br> <label id="sidetext" for="depart">Point de
 				d&eacute;part</label> <br> <input type="text" id="depart" name="depart">
@@ -36,6 +50,15 @@
 			<br> <label id="sidetext" for="enseigne">Enseigne</label> <br>
 			<select name="enseigne" id="enseigne">
 				<option id="tous">Toutes</option>
+				<%
+				  List<String> enseignes = stdao.getEnseignes();
+				  Collections.sort(enseignes);
+				  
+			      for(String enseigne : enseignes)
+				  {
+				    out.println("<option value=\"" + enseigne + "\">" + enseigne.toUpperCase() + "</option>");
+				  }
+				%> <!--
 				<option>AUCHAN</option>
 				<option>AVIA</option>
 				<option>CARREFOUR</option>
@@ -45,7 +68,7 @@
 				<option>INTERMARCHE</option>
 				<option>LECLERC</option>
 				<option>MAGASINS U</option>
-				<option>TOTAL</option>
+				<option>TOTAL</option> -->
 			</select> <br>
 			<br> <input type="submit" name="filtreok" id="filtreok" value="CHERCHER STATIONS">
 		</form>

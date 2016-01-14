@@ -14,24 +14,28 @@
 		<img id="logo" alt="Logo" src="bootstrap/img/Logo.png">
 	</div>
 
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8" id="boutons">
+    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8" id="boutons">
 	  <ul class="nav">
 	    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="btn1">
 	    	<a href="<c:url value="listepompes"></c:url>">
-	    		<img alt="Liste des Pompes" src="bootstrap/img/bouton_Liste_Off_2.png" class="imgbtn">
+	    		<!-- <img alt="Liste des Pompes" src="bootstrap/img/bouton_Liste_Off_2.png" class="imgbtn"> -->
+	    		<input type="button" id="btnstyle" value="Liste Pompes" title="Liste des stations-service sélectionnées" alt="Liste des Pompes">
 	    	</a>
 		</li>
 	    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="btn2">
 	    	<a href="<c:url value="/"></c:url>">
-	    		<img alt="Carte" src="bootstrap/img/bouton_Carte_On_2.png" class="imgbtn">
+	    		<!-- <img alt="Carte" src="bootstrap/img/bouton_Carte_On_2.png" class="imgbtn"> -->
+	    		<input type="button" id="btnstyle" value="Carte" title="Carte des stations-service" alt="Carte">
     		</a>
     	</li>
 	    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="btn3">
 	    	<a href="<c:url value="infos"></c:url>">
-	    		<img alt="Informations" src="bootstrap/img/bouton_Info_Off_2.png" class="imgbtn">
+	    		<!-- <img alt="Informations" src="bootstrap/img/bouton_Info_Off_2.png" class="imgbtn"> -->
+	    		<input type="button" id="btnstyle" value="Informations" title="Informations carburants" alt="Informations">
 	    	</a>
 	    </li>
 	  </ul>
     </div>
+    
 	<img alt="lisere" src="bootstrap/img/lisere.png" id="lisere">
 </nav>
