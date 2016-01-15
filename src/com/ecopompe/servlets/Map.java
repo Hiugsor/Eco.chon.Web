@@ -54,6 +54,6 @@ public class Map extends HttpServlet
 		myObj.add("shapeInfo", shapeObj);
         out.println(myObj.toString());
 
-        out.close();		
+        out.close();
 	}
 }

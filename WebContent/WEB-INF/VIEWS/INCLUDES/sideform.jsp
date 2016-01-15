@@ -1,6 +1,7 @@
 <%@page import="com.bo.*"%>
 <%@page import="com.dao.*" %>
 <%@page import="java.util.*"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 <!--
@@ -12,6 +13,26 @@
 </head>
 <body>  -->
 <!--  <div class="nav nav-stacked nav-stacked-left pull-left col-lg-3" id="leftdiv"> -->
+
+<script type="text/javascript">
+  //listen for scroll
+  var positionElementInPage = $('#leftdiv').offset().top;
+  
+  $(window).scroll(
+    function()
+    {
+      if($(window).scrollTop() >= positionElementInPage)
+      {  // fixed
+ 	    $('#leftdiv').addClass("floatable");
+ 	  }
+      else
+      {  // relative
+ 	    $('#votre_menu_ou_votre_image_ou_votre_element').removeClass("floatable");
+ 	  }
+    }
+  );
+</script>
+
 <div class="sidenav col-lg-2 collapse navbar-collapse" id="leftdiv">
 	<div class="well2 sidebar-nav" align="center" id="leftside">
 		<br>
@@ -58,17 +79,7 @@
 				  {
 				    out.println("<option value=\"" + enseigne + "\">" + enseigne.toUpperCase() + "</option>");
 				  }
-				%> <!--
-				<option>AUCHAN</option>
-				<option>AVIA</option>
-				<option>CARREFOUR</option>
-				<option>CASINO</option>
-				<option>ELF</option>
-				<option>ESSO</option>
-				<option>INTERMARCHE</option>
-				<option>LECLERC</option>
-				<option>MAGASINS U</option>
-				<option>TOTAL</option> -->
+				%>
 			</select> <br>
 			<br> <input type="submit" name="filtreok" id="filtreok" value="CHERCHER STATIONS">
 		</form>
