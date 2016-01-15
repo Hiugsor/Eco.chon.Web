@@ -15,7 +15,6 @@ public class Point
 		_couleur = couleur;	
 	}
 	
-	
 	// GETTERS & SETTERS
 	public Coordonnees getCoordonnee() {
 		return _coordonnee;

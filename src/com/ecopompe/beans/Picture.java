@@ -1,5 +1,5 @@
 package com.ecopompe.beans;
-
+import com.bo.Point;
 public class Picture {
 
 	//Constructors
