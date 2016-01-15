@@ -17,10 +17,6 @@
 	</head>
 	<!--  <body onload="initialize()">-->
 	<body>
-	  <%
-	    //StationDao stdao = new StationDao();
-	    //List<Station> stations = stdao.getStations();
-	  %>
 		<%@include file="INCLUDES/header.jsp" %>
 		<div class="container-fluid text-center" id="divbas">    
   			<div class="row content">
