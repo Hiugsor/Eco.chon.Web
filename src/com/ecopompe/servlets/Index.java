@@ -26,7 +26,7 @@ public class Index extends HttpServlet
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {	    	
+    {	
     	if (request.getParameter("panel_name")!=null)
     	{
     		switch (request.getParameter("panel_name")) {

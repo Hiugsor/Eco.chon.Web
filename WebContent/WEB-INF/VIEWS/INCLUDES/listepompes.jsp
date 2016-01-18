@@ -10,8 +10,8 @@
 <div id="divliste">
 	<img src="bootstrap/img/Bordure_ZoneCarte_1.png" id=cornerTopRight />
 	<img src="bootstrap/img/Bordure_ZoneCarte_2.png" id=cornerBottomLeft />
-	<img src="bootstrap/img/Bordure_ZoneCarte_3.png" id=cornerTopLeft /> <img
-		src="bootstrap/img/Bordure_ZoneCarte_4.png" id=cornerBottomRight />
+	<img src="bootstrap/img/Bordure_ZoneCarte_3.png" id=cornerTopLeft />
+	<img src="bootstrap/img/Bordure_ZoneCarte_4.png" id=cornerBottomRight />
 
 	<%
 		GestionRecherche grecherche = new GestionRecherche();
@@ -37,15 +37,23 @@
 		recherche.setCritere(critere);
     */
 
-
+		
 		List<Station> stations = grecherche.recupereStations(43.610769, 3.876622,30);
 		String enseigne = "";
 		String enseigneok;
 		String logo = "";
 
+		System.out.println(stations.size());
+		
 		for (Station station : stations) 
 		{
+			
+				enseigne = "COCO";
+				System.out.println(enseigne);
+			
 				enseigne = station.getNom();
+				
+				System.out.println(enseigne);
 
 				StringBuilder enseignemaj = new StringBuilder(enseigne);
 				enseignemaj.replace(0, 1, enseignemaj.substring(0, 1).toUpperCase());
@@ -53,8 +61,9 @@
 				enseigneok = enseignemaj.toString();
 
 				if (enseigneok.equals("Super u") || enseigneok.equals("Hyper u"))
+				{
 					logo = "bootstrap/img/stations/Logo U.png";
-
+				}
 				else if (enseigneok.equals("Ecomarché") || enseigneok.equals("Netto"))
 				{
 					logo = "bootstrap/img/stations/Intermarché.png";
@@ -91,9 +100,9 @@
 				}
 
 				else 
-				{					
-					String webpath = request.getSession().getServletContext().getRealPath("bootstrap/img/stations/" + enseignemaj.toString() + ".png");
-					
+				{	
+					String webpath = request.getSession().getServletContext().getRealPath("/") + "bootstrap/img/stations/" + enseignemaj.toString() + ".png";
+										
 					if (new File(webpath).exists())
 					  logo = "bootstrap/img/stations/" + enseignemaj.toString() + ".png";
 					

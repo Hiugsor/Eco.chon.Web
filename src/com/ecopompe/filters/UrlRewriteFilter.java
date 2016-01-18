@@ -39,7 +39,7 @@ public class UrlRewriteFilter implements Filter {
         String requestURI = request.getRequestURI();
 
         if (requestURI.endsWith("/listepompes"))
-        {           
+        {
         	String newURI = "?panel_name=listepompes";
             req.getRequestDispatcher(newURI).forward(req, res);
         }
