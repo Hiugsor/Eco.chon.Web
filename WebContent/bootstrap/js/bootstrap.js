@@ -1122,14 +1122,14 @@ if (typeof jQuery === 'undefined') {
         this.$backdrop
           .one('bsTransitionEnd', callback)
           .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
-        callback()
+        getMarkers()
 
     } else if (!this.isShown && this.$backdrop) {
       this.$backdrop.removeClass('in')
 
       var callbackRemove = function () {
         that.removeBackdrop()
-        callback && callback()
+        callback && getMarkers()
       }
       $.support.transition && this.$element.hasClass('fade') ?
         this.$backdrop
@@ -1138,7 +1138,7 @@ if (typeof jQuery === 'undefined') {
         callbackRemove()
 
     } else if (callback) {
-      callback()
+      getMarkers()
     }
   }
 
@@ -1568,7 +1568,7 @@ if (typeof jQuery === 'undefined') {
       that.$element
         .removeAttr('aria-describedby')
         .trigger('hidden.bs.' + that.type)
-      callback && callback()
+      callback && getMarkers()
     }
 
     this.$element.trigger(e)
@@ -2144,7 +2144,7 @@ if (typeof jQuery === 'undefined') {
             .attr('aria-expanded', true)
       }
 
-      callback && callback()
+      callback && getMarkers()
     }
 
     $active.length && transition ?
