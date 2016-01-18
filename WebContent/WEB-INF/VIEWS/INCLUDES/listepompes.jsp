@@ -92,7 +92,9 @@
 
 				else 
 				{					
-					String webpath = request.getSession().getServletContext().getRealPath("bootstrap/img/stations/" + enseignemaj.toString() + ".png");
+					String webpath = request.getSession().getServletContext().getRealPath("/") + "bootstrap/img/stations/" + enseignemaj.toString() + ".png";
+
+					/*String webpath = request.getSession().getServletContext().getRealPath("bootstrap/img/stations/" + enseignemaj.toString() + ".png");*/
 					
 					if (new File(webpath).exists())
 					  logo = "bootstrap/img/stations/" + enseignemaj.toString() + ".png";

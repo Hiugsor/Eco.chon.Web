@@ -14,23 +14,16 @@
 <body>  -->
 <!--  <div class="nav nav-stacked nav-stacked-left pull-left col-lg-3" id="leftdiv"> -->
 
-<script type="text/javascript">
-  //listen for scroll
-  var positionElementInPage = $('#leftdiv').offset().top;
-  
-  $(window).scroll(
-    function()
-    {
-      if($(window).scrollTop() >= positionElementInPage)
-      {  // fixed
- 	    $('#leftdiv').addClass("floatable");
- 	  }
-      else
-      {  // relative
- 	    $('#votre_menu_ou_votre_image_ou_votre_element').removeClass("floatable");
- 	  }
-    }
-  );
+<script type="text/javascript" src="sideform.js"></script>
+
+<<script type="text/javascript">
+<!--
+  $(document).ready(function() {
+	$(window).scroll(function() {
+		scroll_item('leftdiv');				
+	});
+  });
+//-->
 </script>
 
 <div class="sidenav col-lg-2 collapse navbar-collapse" id="leftdiv">
@@ -39,7 +32,7 @@
 		<form action="#" method="post">
 			<label id="sidetext" for="carb">Carburant</label> <br> <select
 				name="carb" id="carb">
-				<option id="tous">Tous</option>
+				<!-- <option id="tous">Types de carburant ...</option> -->
 				<%
 				  StationDao stdao = new StationDao();  
 				  List<Carburant> carburants = stdao.getCarburants();
@@ -54,7 +47,11 @@
 				  
 				  for(String typecarb : typecarbs)
 				  {
-					  out.println("<option value=\"" + typecarb + "\">" + typecarb + "</option>");
+					  if(typecarb.equals("Gazole"))
+					    out.println("<option value=\"Gazole\" selected=\"selected\">Gazole</option>");
+					  
+					  else
+						out.println("<option value=\"" + typecarb + "\">" + typecarb + "</option>");
 				  }
 				%>
 			</select> <br>
@@ -70,7 +67,7 @@
 			<br>
 			<br> <label id="sidetext" for="enseigne">Enseigne</label> <br>
 			<select name="enseigne" id="enseigne">
-				<option id="tous">Toutes</option>
+				<option id="tous">Enseignes ...</option>
 				<%
 				  List<String> enseignes = stdao.getEnseignes();
 				  Collections.sort(enseignes);
