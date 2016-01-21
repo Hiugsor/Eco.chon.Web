@@ -38,22 +38,14 @@
     */
 
 		
-		List<Station> stations = grecherche.recupereStations(43.610769, 3.876622,30);
+		List<Station> stations = grecherche.recupereStations(43.610769, 3.876622,"TOTO",30);
 		String enseigne = "";
 		String enseigneok;
 		String logo = "";
-
-		System.out.println(stations.size());
 		
 		for (Station station : stations) 
-		{
-			
-				enseigne = "COCO";
-				System.out.println(enseigne);
-			
+		{		
 				enseigne = station.getNom();
-				
-				System.out.println(enseigne);
 
 				StringBuilder enseignemaj = new StringBuilder(enseigne);
 				enseignemaj.replace(0, 1, enseignemaj.substring(0, 1).toUpperCase());

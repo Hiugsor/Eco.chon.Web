@@ -18,15 +18,14 @@
 	  
 	</head>
 	<body>
-		<%@include file="INCLUDES/header.jsp" %>
+		<c:import url="INCLUDES/header.jsp" />
 		<div class="container-fluid text-center" id="divbas">    
   			<div class="row content">
-				<%@include file="INCLUDES/sideform.jsp" %>
+				<c:import url="INCLUDES/sideform.jsp" />
 				<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" id="divprincipal">
 				  <c:import url="${main_panel}"/>
 				</div>
 			</div>
-
 		</div>
 	  
 	  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
