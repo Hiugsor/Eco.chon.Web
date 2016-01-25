@@ -7,5 +7,6 @@
 	<img src="bootstrap/img/Bordure_ZoneCarte_3.png" id=cornerTopLeft />
 	<img src="bootstrap/img/Bordure_ZoneCarte_4.png" id=cornerBottomRight />
   	
-  	<img src="bootstrap/img/courbe_OPEP.png" alt="Courbe OPEP" width="100%">
+  	<img src="bootstrap/img/courbe_OPEP.png" alt="Courbe OPEP" id="imgstats">
+  	<img src="bootstrap/img/courbe_OPEP.png" alt="Courbe OPEP" id="imgstats">
   </div>
