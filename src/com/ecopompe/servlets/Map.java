@@ -47,6 +47,11 @@ public class Map extends HttpServlet {
 			int distance = Integer.parseInt( request.getParameter("distance"));
 			String carburant = request.getParameter("typeCarburant").toString();
 			
+			
+			response.setContentType("text/html");
+			response.setCharacterEncoding("UTF-8");
+						
+			
 			/*if(!request.getParameter("enseigne").toString().equalsIgnoreCase(DEFAULT_TYPE_ENSEIGNE))
 			{
 			 
@@ -70,43 +75,50 @@ public class Map extends HttpServlet {
 								
 				//System.out.println(latitude + " ---- " + longitude );//TEST
 				
-				stationsRes = grecherche.recupereStations(latitude, longitude, carburant, distance);				 
+				stationsRes = grecherche.recupereStations(latitude, longitude, carburant, distance);	
 			}						 
 			
-			/*Picture pictGreen = new Picture();
+			
+			Picture pictGreen = new Picture();
 			pictGreen.setUrl(MARKER_ICON_GREEN);
 			
 			Picture pictOrange = new Picture();
 			pictOrange.setUrl(MARKER_ICON_ORANGE);
 			
 			Picture pictRed = new Picture();
-			pictRed.setUrl(MARKER_ICON_RED);*/
+			pictRed.setUrl(MARKER_ICON_RED);
 			
 			
-			Picture pictDefault = new Picture();
-			pictDefault.setUrl(MARKER_ICON_DEFAULT);
+			/*Picture pictDefault = new Picture();
+			pictDefault.setUrl(MARKER_ICON_DEFAULT);*/
 			
 			Point size = new Point();
 			myCoord = new Coordonnees();
 			myCoord.setLatitude(40.0);
 			myCoord.setLongitude(40.0);
 			size.setCoordonnee(myCoord);
-			pictDefault.setSize(size);
+			pictGreen.setSize(size);
+			pictOrange.setSize(size);
+			pictRed.setSize(size);
 			
 			Point origine = new Point();
 			myCoord = new Coordonnees();
 			myCoord.setLatitude(0.0);
 			myCoord.setLongitude(0.0);
 			origine.setCoordonnee(myCoord);
-			pictDefault.setOrigin(origine);
+			pictGreen.setOrigin(origine);
+			pictOrange.setOrigin(origine);
+			pictRed.setOrigin(origine);
 			
 			Point anchor = new Point();
 			myCoord = new Coordonnees();
 			myCoord.setLatitude(0.0);
 			myCoord.setLongitude(55.0);
 			anchor.setCoordonnee(myCoord);
-			pictDefault.setAnchor(anchor);
-
+			pictGreen.setAnchor(anchor);
+			pictOrange.setAnchor(anchor);
+			pictRed.setAnchor(anchor);
+		
 			Shape shape = new Shape();
 							
 			PrintWriter out = response.getWriter();
@@ -114,13 +126,20 @@ public class Map extends HttpServlet {
 			JsonObject myObj = new JsonObject();
 		 
 			JsonElement stationArrayObj = gson.toJsonTree(stationsRes);
-			JsonElement pictureObj = gson.toJsonTree(pictDefault);
+			JsonElement greenPig = gson.toJsonTree(pictGreen);
+			JsonElement orangePig = gson.toJsonTree(pictOrange);
+			JsonElement redPig = gson.toJsonTree(pictRed);
 			JsonElement shapeObj = gson.toJsonTree(shape);
 			
 			myObj.add("stationList",  stationArrayObj);
-			myObj.add("pictureInfo",  pictureObj);
+			myObj.add("greenPicture",  greenPig);
+			myObj.add("orangePicture",  orangePig);
+			myObj.add("redPicture",  redPig);
 			myObj.add("shapeInfo",  shapeObj);
 
+			//System.out.println(myObj.toString());
+			
+			
 			out.println(myObj.toString());
 
 			out.close();

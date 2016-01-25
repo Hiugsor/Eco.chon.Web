@@ -51,6 +51,7 @@ function updateStations()
 }
 
 
+
 function updateStationsAndPosition()
 {
 	var geocoder = new google.maps.Geocoder();
@@ -82,5 +83,5 @@ function updateStationsAndPosition()
 	      {
 	    	  alert("Geocode was not successful for the following reason: " + status);
 	      }
-	});
+	});	
 }

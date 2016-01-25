@@ -9,9 +9,10 @@
 	<div class="well2 sidebar-nav" align="center" id="leftside">
 		<br>
 		<form novalidate method="post">
-			<label id="sidetext" for="carb">Carburant</label> <br> <select
-				name="carb" id="carb">
-				<option id="tous">Tous</option>
+			<label id="sidetext" for="carb">Carburant</label>
+			<br>
+			<select	name="carb" id="carb" onchange="updateStations()">
+				<!--  <option id="tous">Tous</option> -->
 				<%
 				  StationDao stdao = new StationDao();  
 				  List<Carburant> carburants = stdao.getCarburants();

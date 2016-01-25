@@ -15,6 +15,7 @@
 
 	<%
 		GestionRecherche grecherche = new GestionRecherche();
+	
 	/*
 		Recherche recherche = new Recherche();
 		Critere critere = new Critere();
@@ -38,7 +39,7 @@
     */
 
 		
-		List<Station> stations = grecherche.recupereStations(43.610769, 3.876622,"TOTO",30);
+		List<Station> stations = grecherche.recupereStations(43.610769, 3.876622,"E10",30);
 		String enseigne = "";
 		String enseigneok;
 		String logo = "";
@@ -101,6 +102,8 @@
 					else
 					  logo = "bootstrap/img/stations/StationX.png";
 				}
+				
+				System.out.println(logo);
 	%>
 
 	<div id="listepompes">
