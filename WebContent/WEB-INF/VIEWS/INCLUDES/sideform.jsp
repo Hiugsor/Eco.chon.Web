@@ -63,12 +63,9 @@
 			<br> <br>
 			<br> <br>
 			<br> <label id="sidetext" for="distance">Distance de<br>recherche</label> <br>
-<<<<<<< HEAD
 			<br> <input name="distance" id="slider" type="range" min="0"
 				max="200" step="1" value="30" oninput="updatePerimeter(this.value)" onchange="updatePerimeter(this.value)" onclick="updateStations()" >
-=======
-			<br> <input name="distance" id="slider" type="range" min="0" max="200" step="1" value="30" onchange="rangevalue.value = value">
->>>>>>> 6eb92486d2acd874732305ce46d5d3c89b68d505
+
 			<output id="rangevalue">30</output>
 			<br>
 			<br> <label id="sidetext" for="enseigne">Enseigne</label> <br>
