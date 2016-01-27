@@ -9,13 +9,15 @@ var markers = [];
 var currentposition;
 var userMarker;
 var myCircle;
+var myGeocoder;
 
 
-// FUNCTIONS
-function showVal(newVal)
+/*function showVal(newVal)
 {
 	document.getElementById("rangevalue").innerHTML=newVal;
 }
+*/
+
 
 // Mise à jour du radius et de sa valeur en temps réel
 function updatePerimeter(newPerimeter)
@@ -51,37 +53,52 @@ function updateStations()
 }
 
 
-
 function updateStationsAndPosition()
-{
-	var geocoder = new google.maps.Geocoder();
+{	
+	//alert(window.location.href);//TEST
+	updateStations(); 
 	
-	geocoder.geocode( { 'address': document.getElementById("depart").value}, function(results, status) {
-	      if (status == google.maps.GeocoderStatus.OK)
-	      {
-	    	  	// On retire le cercle de la MAP
-	    		myCircle.setMap(null); 
-	    		myCircle.setRadius(null);
-	    		
-	    		myLat = results[0].geometry.location.lat();
-  				myLong= results[0].geometry.location.lng();
-  				
-  				currentposition = new google.maps.LatLng(myLat, myLong);
-	    		    		
-	    		userMarker.setMap(null);
-	    		userMarker.setPosition(currentposition);
-	    		userMarker.setMap(myMap);
-	    		
-	    		myCircle.setCenter(currentposition);
-	    		var newDistance = document.getElementById("slider").value*1000;
-	    		myCircle.setRadius(newDistance);    		
-	    		myCircle.setMap(myMap);
-	    		     
-	    		updateStations();   
-	      }
-	      else
-	      {
-	    	  alert("Geocode was not successful for the following reason: " + status);
-	      }
-	});	
+	if(document.getElementById("mapiframe"))
+	{
+		myGeocoder.geocode( { 'address': document.getElementById("depart").value}, function(results, status) {
+		      if (status == document.getElementById("mapiframe").contentWindow.google.maps.GeocoderStatus.OK)
+		      {
+		    	  	// On retire le cercle de la MAP
+		    		myCircle.setMap(null); 
+		    		myCircle.setRadius(null);
+		    		
+		    		myLat = results[0].geometry.location.lat();
+	  				myLong= results[0].geometry.location.lng();
+	  				
+	  				var goo = document.getElementById("mapiframe").contentWindow.google;
+	  				
+	  				currentposition = new goo.maps.LatLng(myLat, myLong);
+		    		    		
+		    		userMarker.setMap(null);
+		    		userMarker.setPosition(currentposition);
+		    		userMarker.setMap(myMap);
+		    		
+		    		myCircle.setCenter(currentposition);
+		    		var newDistance = document.getElementById("slider").value*1000;
+		    		myCircle.setRadius(newDistance);    		
+		    		myCircle.setMap(myMap);
+		    		     
+		    		  
+		      }
+		      else
+		      {
+		    	  alert("Geocode was not successful for the following reason: " + status);
+		      }
+		});
+	}
+	else if(document.getElementById("divliste"))
+	{
+		
+		
+	}
+	else if(document.getElementById("divinfos"))
+	{
+		
+		
+	}
 }

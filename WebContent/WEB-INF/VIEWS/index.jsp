@@ -13,7 +13,7 @@
 
 	  <script type="text/javascript" src="sideform.js"></script>
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCglAqJ_MLrlZxzJq8rCl-6xFMmWYlSxzA" async defer></script>
+	  <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3?key=AIzaSyCglAqJ_MLrlZxzJq8rCl-6xFMmWYlSxzA" async defer></script> -->
 	  <!--  <script src="js.cookie.js"></script> -->
 	  
 	</head>

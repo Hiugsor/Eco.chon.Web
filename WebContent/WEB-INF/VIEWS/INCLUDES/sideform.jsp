@@ -1,21 +1,10 @@
 <%@page import="com.bo.*"%>
 <%@page import="com.dao.*" %>
 <%@page import="java.util.*"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <title>Formulaire de recherche des stations</title>
-</head>
-<body>  -->
-<!--  <div class="nav nav-stacked nav-stacked-left pull-left col-lg-3" id="leftdiv"> -->
 
 <script type="text/javascript" src="leftarea.js"></script>
-
 <script type="text/javascript">
 <!--
   $(document).ready(function() {
@@ -64,7 +53,7 @@
 			<br> <br>
 			<br> <label id="sidetext" for="distance">Distance de<br>recherche</label> <br>
 			<br> <input name="distance" id="slider" type="range" min="0"
-				max="200" step="1" value="30" oninput="updatePerimeter(this.value)" onchange="updatePerimeter(this.value)" onclick="updateStations()" >
+				max="200" step="1" value="30" oninput="updatePerimeter(this.value)" onchange="updateStations()" onclick="updateStations()" >
 
 			<output id="rangevalue">30</output>
 			<br>
@@ -85,6 +74,3 @@
 		</form>
 	</div>
 </div>
-<!--
-</body>
-</html> -->
