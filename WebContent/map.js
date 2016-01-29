@@ -245,7 +245,7 @@ function getStations(distance, typeCarburant, enseigne, adresse)
 	    	 }
 	      },
 	      error: function (request, status, error) {
-	          alert(request.responseText);
+	          console.info("Pblm récupération stations : " + request.responseText);
 	      }  
 	  });
 }
