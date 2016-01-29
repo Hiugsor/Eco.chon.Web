@@ -1,13 +1,11 @@
 <%@page import="com.bo.*"%>
 <%@page import="com.dao.*" %>
 <%@page import="java.util.*"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 
 <script type="text/javascript" src="leftarea.js"></script>
 <script type="text/javascript" src="map.js"></script>
-
 <script type="text/javascript">
 
   $(document).ready(function() {
@@ -35,8 +33,8 @@
 <div class="sidenav col-lg-2 collapse navbar-collapse" id="leftdiv">
 	<div class="well2 sidebar-nav" align="center" id="leftside">
 		<br>
-
 		<form method="post" novalidate="novalidate">
+
 			<label id="sidetext" for="carb">Carburant</label>
 			<br>
 			<select	name="carb" id="carb" onchange="updateStations()">
@@ -68,7 +66,7 @@
 			<br>
 			<br> <br>
 			<br> <label id="sidetext" for="distance">Distance de<br>recherche</label> <br>
-			<br> <input name="distance" id="slider" type="range" min="0" max="200" step="1" value="30" oninput="updatePerimeter(this.value)" onchange="updatePerimeter(this.value)" onclick="updateStations()">
+			<br> <input name="distance" id="slider" type="range" min="0" max="200" step="1" value="30" oninput="updatePerimeter(this.value)" onchange="updateStations()" onclick="updateStations()">
 
 			<output id="rangevalue">30</output>
 			<br>
@@ -80,7 +78,7 @@
 			    %>
 			  </label>			
 			<br><br>
-			<input type="button" onClick="updateStationsAndPosition()" name="filtreok" id="filtreok" value="CHERCHER STATIONS">
+			<input type="button" onClick="updateStations()" name="filtreok" id="filtreok" value="CHERCHER STATIONS">
 		</form>
 	</div>
 </div>

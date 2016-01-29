@@ -16,44 +16,23 @@
 
 	<%
 		GestionRecherche grecherche = new GestionRecherche();
-	
-	/*
-		Recherche recherche = new Recherche();
-		Critere critere = new Critere();
-		Point position = new Point();
-		Coordonnees coordonnee = new Coordonnees();
-		coordonnee.setLatitude(43.610769);
-		coordonnee.setLongitude(3.876622);
-		position.setCoordonnee(coordonnee);
-		critere.setPosition(position);
-		recherche.setCritere(critere);
-		critere.setRayon(30);
-
-	  
-		Adresse adresse = new Adresse();
-		adresse.setRue("98 avenue de toulouse");
-		adresse.setVille("Montpellier");
-		adresse.setCodepostal("34000");
-		critere.setAdresse(adresse);
-		critere.setRayon(30);
-		recherche.setCritere(critere);
-    */
 		String carbchoix = "Gazole";
 
-
-		List<Station> stations = grecherche.recupereStations(43.610769, 3.876622, carbchoix, 30);     // AFPA
+		List<Station> stations = null;
+		// grecherche.recupereStations(43.610769, 3.876622, carbchoix, 30);     // AFPA
 		// List<Station> stations = grecherche.recupereStations(44.425975, 3.739340, carbchoix, 30);        // Mont Lozère
 		// List<Station> stations = grecherche.recupereStations("Route du Mont Lozère 48190 Le Bleymard", carbchoix, 30);
+		if(request.getSession().getAttribute("stations") != null)
+		stations = (ArrayList<Station>) request.getSession().getAttribute("stations");
+		
 		String enseigne = "";
 		String enseigneok;
 		String logo = "";
 		List<String> servicesaafficher = new ArrayList<String>();
 		int lg = (servicesaafficher.size() - 1);
-		
-		for (Station station : stations) 
-		{			
-
-
+		if(stations != null)
+		for (Station station : stations)
+		{
 				enseigne = station.getNom();
 
 				StringBuilder enseignemaj = new StringBuilder(enseigne);
@@ -107,7 +86,6 @@
 
 					/*String webpath = request.getSession().getServletContext().getRealPath("bootstrap/img/stations/" + enseignemaj.toString() + ".png");*/
 					
-
 					if (new File(webpath).exists())
 					  logo = "bootstrap/img/stations/" + enseignemaj.toString() + ".png";
 					
@@ -182,7 +160,6 @@
 				  listeserv = listeserv.substring(0, (listeserv.length() - 2));      // pour retirer le "-" final (esthétique)
 				  servicesaafficher.add(listeserv);
 				  lg++;
-				  
 				%>
 				
 				<script type="text/javascript">

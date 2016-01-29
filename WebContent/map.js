@@ -4,22 +4,22 @@ var markerIcons;
 function initialize()
 {	
 	// Instanciation of a DirectionService object. This object communicates with the Google Maps API Directions Service which receives direction requests and returns computed results
-	parent.directionsService = new parent.google.maps.DirectionsService;
+	parent.directionsService = new google.maps.DirectionsService;
 	
-	parent.myMap = new parent.google.maps.Map(document.getElementById("map"), {
+	parent.myMap = new google.maps.Map(document.getElementById("map"), {
 	        zoom: 13,
-		    mapTypeId: parent.google.maps.MapTypeId.ROADMAP
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
 	 });
 	 
 	 
-	 parent.userMarker = new parent.google.maps.Marker({
+	 parent.userMarker = new google.maps.Marker({
 		    map: parent.myMap,
-		    title: 'You are here !!',
-		    draggable: true
+		    title: 'You are here !',
+		    draggable: false
 		  });
 	 
 	 
-	 parent.myCircle = new parent.google.maps.Circle({
+	 parent.myCircle = new google.maps.Circle({
 			strokeColor:"#0000FF",
 			strokeOpacity:0.5,
 			strokeWeight:2,
@@ -29,6 +29,8 @@ function initialize()
 		});
 	 
     	 
+	 parent.myGeocoder = new google.maps.Geocoder();
+	 
 	 if (navigator.geolocation)
 	 {
 		 var watchId = navigator.geolocation.getCurrentPosition(successCallback, error, {enableHighAccuracy:true});
@@ -86,7 +88,7 @@ function successCallback(position)
 		parent.myLong = 2.375797; // BOURGES - CENTRE DE LA FRANCE
 	}
 	
-	parent.currentposition = new parent.google.maps.LatLng(parent.myLat, parent.myLong);
+	parent.currentposition = new google.maps.LatLng(parent.myLat, parent.myLong);
 	parent.myMap.setCenter(parent.currentposition);
 	
 	//Set marker position
@@ -120,96 +122,124 @@ function getStations(distance, typeCarburant, adresse)
 	     dataType: 'json',
 	     success:function(datas){
 
-	    	 var stationList = datas.stationList;
-
-	    	 //alert(stationList.toSource());//TEST
+	    	
 	    	 
-	    	 //Change the center of the map to the given LatLng
-	    	 parent.myMap.panTo(new parent.google.maps.LatLng(parent.myLat, parent.myLong));
-	    	 
-	    	 var greenPig = {
-	    			 url: datas.greenPicture._url,
-			
-	    			 // This marker is 55 pixels wide by 55 pixels high.
-	    			 size: new parent.google.maps.Size(datas.greenPicture._size.coordonnee.latitude, datas.greenPicture._size.coordonnee.longitude),
-			
-	    			 // The origin for this image is (0, 0).
-	    			 origin: new parent.google.maps.Point(datas.greenPicture._origin.coordonnee.latitude, datas.greenPicture._origin.coordonnee.longitude),
-
-	    			 // The anchor for this image is the base of the flagpole at (0, 32).
-	    			 anchor: new parent.google.maps.Point(datas.greenPicture._anchor.coordonnee.latitude, datas.greenPicture._anchor.coordonnee.longitude)
-	    	 };
-	    	 
-	    	 var orangePig = {
-	    			 url: datas.orangePicture._url,
-			
-	    			 // This marker is 55 pixels wide by 55 pixels high.
-	    			 size: new parent.google.maps.Size(datas.greenPicture._size.coordonnee.latitude, datas.greenPicture._size.coordonnee.longitude),
-			
-	    			 // The origin for this image is (0, 0).
-	    			 origin: new parent.google.maps.Point(datas.greenPicture._origin.coordonnee.latitude, datas.greenPicture._origin.coordonnee.longitude),
-
-	    			 // The anchor for this image is the base of the flagpole at (0, 32).
-	    			 anchor: new parent.google.maps.Point(datas.greenPicture._anchor.coordonnee.latitude, datas.greenPicture._anchor.coordonnee.longitude)
-	    	 };
-	    	 
-	    	 var redPig = {
-	    			 url: datas.redPicture._url,
-			
-	    			 // This marker is 55 pixels wide by 55 pixels high.
-	    			 size: new parent.google.maps.Size(datas.greenPicture._size.coordonnee.latitude, datas.greenPicture._size.coordonnee.longitude),
-			
-	    			 // The origin for this image is (0, 0).
-	    			 origin: new parent.google.maps.Point(datas.greenPicture._origin.coordonnee.latitude, datas.greenPicture._origin.coordonnee.longitude),
-
-	    			 // The anchor for this image is the base of the flagpole at (0, 32).
-	    			 anchor: new parent.google.maps.Point(datas.greenPicture._anchor.coordonnee.latitude, datas.greenPicture._anchor.coordonnee.longitude)
-	    	 };   	 
-	    	 
-	        	
-	    	 // Shapes define the clickable region of the icon. The type defines an HTML
-	    	 // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-	    	 // The final coordinate closes the poly by connecting to the first coordinate.
-			 var shape = {
-					 coords: datas.shapeInfo._coords,
-					 type: datas.shapeInfo._type
-			 };
-		 		
-			  // Instanciation of a DirectionsRenderer object. It renders directions obtained from the DirectionsService.
-			  parent.directionsDisplay = new parent.google.maps.DirectionsRenderer;
-			  			  			  
-			  //Tri du tableau d'objets en fonction du prix du carburant visé
-			  stationList.sort(comparator(typeCarburant));
-			  		  
-			  // Calcul des bornes pour la couleur des cochons
-			  var borneGreenOrange = stationList.length/3;
-			  var borneOrangeRed = borneGreenOrange*2;
-			  
-			  for (var i = 0; i < stationList.length; i++)
-			  {   
-				  //Instanciation of a InfoWindow object. It displays content (usually text or images) in a popup window above the map, at a given location. 
-				  var infowin = new parent.google.maps.InfoWindow();
-				  var station = stationList[i];
+	    	 if(datas.stationList)
+	    	 {
+		    	 var stationList = datas.stationList;
+	
+		    	 //alert(stationList.toSource());//TEST
+		    	 
+		    	 //Change the center of the map to the given LatLng
+		    	 parent.myMap.panTo(new google.maps.LatLng(parent.myLat, parent.myLong));
+		    	 
+		    	 var greenPig = {
+		    			 url: datas.greenPicture._url,
+				
+		    			 // This marker is 55 pixels wide by 55 pixels high.
+		    			 size: new google.maps.Size(datas.greenPicture._size.coordonnee.latitude, datas.greenPicture._size.coordonnee.longitude),
+				
+		    			 // The origin for this image is (0, 0).
+		    			 origin: new google.maps.Point(datas.greenPicture._origin.coordonnee.latitude, datas.greenPicture._origin.coordonnee.longitude),
+	
+		    			 // The anchor for this image is the base of the flagpole at (0, 32).
+		    			 anchor: new google.maps.Point(datas.greenPicture._anchor.coordonnee.latitude, datas.greenPicture._anchor.coordonnee.longitude)
+		    	 };
+		    	 
+		    	 var orangePig = {
+		    			 url: datas.orangePicture._url,
+				
+		    			 // This marker is 55 pixels wide by 55 pixels high.
+		    			 size: new google.maps.Size(datas.greenPicture._size.coordonnee.latitude, datas.greenPicture._size.coordonnee.longitude),
+				
+		    			 // The origin for this image is (0, 0).
+		    			 origin: new google.maps.Point(datas.greenPicture._origin.coordonnee.latitude, datas.greenPicture._origin.coordonnee.longitude),
+	
+		    			 // The anchor for this image is the base of the flagpole at (0, 32).
+		    			 anchor: new google.maps.Point(datas.greenPicture._anchor.coordonnee.latitude, datas.greenPicture._anchor.coordonnee.longitude)
+		    	 };
+		    	 
+		    	 var redPig = {
+		    			 url: datas.redPicture._url,
+				
+		    			 // This marker is 55 pixels wide by 55 pixels high.
+		    			 size: new google.maps.Size(datas.greenPicture._size.coordonnee.latitude, datas.greenPicture._size.coordonnee.longitude),
+				
+		    			 // The origin for this image is (0, 0).
+		    			 origin: new google.maps.Point(datas.greenPicture._origin.coordonnee.latitude, datas.greenPicture._origin.coordonnee.longitude),
+	
+		    			 // The anchor for this image is the base of the flagpole at (0, 32).
+		    			 anchor: new google.maps.Point(datas.greenPicture._anchor.coordonnee.latitude, datas.greenPicture._anchor.coordonnee.longitude)
+		    	 };   	 
+		    	 
+		        	
+		    	 // Shapes define the clickable region of the icon. The type defines an HTML
+		    	 // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+		    	 // The final coordinate closes the poly by connecting to the first coordinate.
+				 var shape = {
+						 coords: datas.shapeInfo._coords,
+						 type: datas.shapeInfo._type
+				 };
+			 		
+				  // Instanciation of a DirectionsRenderer object. It renders directions obtained from the DirectionsService.
+				  parent.directionsDisplay = new google.maps.DirectionsRenderer;
+				  			  			  
+				  //Tri du tableau d'objets en fonction du prix du carburant visé
+				  stationList.sort(comparator(typeCarburant));
+				  		  
+				  // Calcul des bornes pour la couleur des cochons
+				  var borneGreenOrange = stationList.length/3;
+				  var borneOrangeRed = borneGreenOrange*2;
 				  
-				  var mark = new parent.google.maps.Marker({
-				  numero : i,
-				  position: {lat: station.adresse.position.coordonnee.latitude, lng: station.adresse.position.coordonnee.longitude},
-				  map: parent.myMap,
-				  shape: shape
-				  });
-				  				  
-				  // On détermine la couleur du cochon en fonction de sa position dans le tableau trié
-				  if(i>borneOrangeRed)
-				  {
-					  mark.setIcon(redPig);
-				  }
-				  else if(i>borneGreenOrange)
-				  {
-					  mark.setIcon(orangePig);
-				  }
-				  else
-				  {
-					  mark.setIcon(greenPig);
+				  for (var i = 0; i < stationList.length; i++)
+				  {   
+					  //Instanciation of a InfoWindow object. It displays content (usually text or images) in a popup window above the map, at a given location. 
+					  var infowin = new google.maps.InfoWindow();
+					  var station = stationList[i];
+					  
+					  var mark = new google.maps.Marker({
+					  numero : i,
+					  position: {lat: station.adresse.position.coordonnee.latitude, lng: station.adresse.position.coordonnee.longitude},
+					  map: parent.myMap,
+					  shape: shape
+					  });
+					  				  
+					  // On détermine la couleur du cochon en fonction de sa position dans le tableau trié
+					  if(i>borneOrangeRed)
+					  {
+						  mark.setIcon(redPig);
+					  }
+					  else if(i>borneGreenOrange)
+					  {
+						  mark.setIcon(orangePig);
+					  }
+					  else
+					  {
+						  mark.setIcon(greenPig);
+					  }
+					  				  
+					  google.maps.event.addListener(mark, 'click', function(event) {
+	
+						var StationCoordonates = event.latLng;
+						stationLat = StationCoordonates.lat();
+						stationLong = StationCoordonates.lng();			
+						
+						var prixCarburants = stationList[this.numero].carburants;
+						var stringListeCarburant = "<h3>Carburant</h3>";
+						prixCarburants.forEach(function(entry){
+									var prixCarbu = (parseInt(entry.prix)/1000);
+									stringListeCarburant += entry.nom + " : " + prixCarbu + " €<br/>";
+								});
+						
+						var contentString = "<h2>Station : " + stationList[this.numero].nom + "</h2>" + /*"</h2> Lat : " + stationList[this.numero].adresse.position.coordonnee.latitude + "<br/> Long : " + stationList[this.numero].adresse.position.coordonnee.longitude + */"<br/> Adresse : " + stationList[this.numero].adresse.rue + "<br/> CP : " + stationList[this.numero].adresse.codepostal + "<br/> Ville : " + stationList[this.numero].adresse.ville.toUpperCase() + "<br/><hr size=\"1\">" + stringListeCarburant + "<br/><br/><input type='button' onClick=calculateAndDisplayRoute(stationLat,stationLong); value='Go !'>";
+	
+						infowin.setContent(contentString);
+						infowin.open(this.getMap(), this);			
+					  });	
+					  
+					  //Ajout du marker dans le tableau de markers
+					  parent.markers.push(mark);
+					  parent.directionsDisplay.setMap(parent.myMap);
 				  }
 				  				  
 				  parent.google.maps.event.addListener(mark, 'click', function(event) {
@@ -246,9 +276,10 @@ function getStations(distance, typeCarburant, adresse)
 				  parent.markers.push(mark);
 				  parent.directionsDisplay.setMap(parent.myMap);
 			  }		  
+
 	      },
 	      error: function (request, status, error) {
-	          alert(request.responseText);
+	          console.info("Pblm récupération stations : " + request.responseText);
 	      }  
 	  });
 }
@@ -306,11 +337,11 @@ function customizeInfoWindow(infowindow)
 function calculateAndDisplayRoute(lati,lng)
 {	
 	parent.directionsService.route({
-		origin: new parent.google.maps.LatLng(parent.myLat,parent.myLong),
-		destination: new parent.google.maps.LatLng(lati, lng),
-		travelMode: parent.google.maps.TravelMode.DRIVING
+		origin: new google.maps.LatLng(parent.myLat,parent.myLong),
+		destination: new google.maps.LatLng(lati, lng),
+		travelMode: google.maps.TravelMode.DRIVING
 		}, function(response, status) {
-			if (status === parent.google.maps.DirectionsStatus.OK) {
+			if (status === google.maps.DirectionsStatus.OK) {
 				parent.directionsDisplay.setDirections(response);
 		} else {
 			window.alert('Directions request failed due to ' + status);
