@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
 import com.bo.Station;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.processing.GestionRecherche;
 
 @WebServlet("/ListePompes")
@@ -62,9 +58,7 @@ public class ListePompes extends HttpServlet {
 			
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
-			
-			System.out.println("BOUTEILLE");
-			
+						
 			if(request.getParameterMap().containsKey("adresse"))
 			{
 				String adresse = request.getParameter("adresse").toString();

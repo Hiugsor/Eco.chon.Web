@@ -121,8 +121,6 @@ function getStations(distance, typeCarburant, adresse)
 	     data: tabDatas,
 	     dataType: 'json',
 	     success:function(datas){
-
-	    	
 	    	 
 	    	 if(datas.stationList)
 	    	 {
@@ -217,32 +215,8 @@ function getStations(distance, typeCarburant, adresse)
 					  {
 						  mark.setIcon(greenPig);
 					  }
-					  				  
-					  google.maps.event.addListener(mark, 'click', function(event) {
-	
-						var StationCoordonates = event.latLng;
-						stationLat = StationCoordonates.lat();
-						stationLong = StationCoordonates.lng();			
-						
-						var prixCarburants = stationList[this.numero].carburants;
-						var stringListeCarburant = "<h3>Carburant</h3>";
-						prixCarburants.forEach(function(entry){
-									var prixCarbu = (parseInt(entry.prix)/1000);
-									stringListeCarburant += entry.nom + " : " + prixCarbu + " €<br/>";
-								});
-						
-						var contentString = "<h2>Station : " + stationList[this.numero].nom + "</h2>" + /*"</h2> Lat : " + stationList[this.numero].adresse.position.coordonnee.latitude + "<br/> Long : " + stationList[this.numero].adresse.position.coordonnee.longitude + */"<br/> Adresse : " + stationList[this.numero].adresse.rue + "<br/> CP : " + stationList[this.numero].adresse.codepostal + "<br/> Ville : " + stationList[this.numero].adresse.ville.toUpperCase() + "<br/><hr size=\"1\">" + stringListeCarburant + "<br/><br/><input type='button' onClick=calculateAndDisplayRoute(stationLat,stationLong); value='Go !'>";
-	
-						infowin.setContent(contentString);
-						infowin.open(this.getMap(), this);			
-					  });	
-					  
-					  //Ajout du marker dans le tableau de markers
-					  parent.markers.push(mark);
-					  parent.directionsDisplay.setMap(parent.myMap);
-				  }
-				  				  
-				  parent.google.maps.event.addListener(mark, 'click', function(event) {
+					 				  
+					google.maps.event.addListener(mark, 'click', function(event) {
 
 					var StationCoordonates = event.latLng;
 					stationLat = StationCoordonates.lat();
@@ -275,6 +249,8 @@ function getStations(distance, typeCarburant, adresse)
 				  //Ajout du marker dans le tableau de markers
 				  parent.markers.push(mark);
 				  parent.directionsDisplay.setMap(parent.myMap);
+				  
+				  }
 			  }		  
 
 	      },

@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 
 <script type="text/javascript" src="leftarea.js"></script>
-<script type="text/javascript" src="map.js"></script>
+<!-- <script type="text/javascript" src="map.js"></script>  -->
 <script type="text/javascript">
 
   $(document).ready(function() {
@@ -20,7 +20,18 @@
 	  {
 	    if (navigator.geolocation)
 	    {
-		    var watchIdbis = navigator.geolocation.getCurrentPosition(successCallback, error, {enableHighAccuracy:true});
+	    	var divElement;
+	    	
+	    	if(document.getElementById("mapiframe"))
+    		{
+	    		divElement = document.getElementById("mapiframe");
+		    	var watchIdbis = navigator.geolocation.getCurrentPosition(divElement.contentWindow.successCallback, divElement.contentWindow.error, {enableHighAccuracy:true});
+    		}
+	    	else if(document.getElementById("divliste"))
+	    	{
+	    		divElement = document.getElementById("divliste");
+		    	var watchIdbis = navigator.geolocation.getCurrentPosition(successCallback2, error2, {enableHighAccuracy:true});
+	    	}
 	    }
 	    else
 	    {
@@ -37,9 +48,8 @@
 
 			<label id="sidetext" for="carb">Carburant</label>
 			<br>
-			<select	name="carb" id="carb" onchange="updateStations()">
-				<!--  <option id="tous">Tous</option> -->
-
+			<select	name="carb" id="carb" onchange="updateStations()" >
+				
 				<%
 				  StationDao stdao = new StationDao();  
 				  List<Carburant> carburants = stdao.getCarburants();
@@ -61,7 +71,8 @@
 						out.println("<option value=\"" + typecarb + "\">" + typecarb + "</option>");
 				  }
 				%>
-			</select> <br>
+				
+			</select><br>
 			<br> <label id="sidetext" for="depart">Point de	d&eacute;part</label> <br> <input type="text" id="depart" name="depart">
 			<br>
 			<br> <br>

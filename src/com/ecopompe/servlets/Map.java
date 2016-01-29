@@ -24,6 +24,7 @@ import com.processing.GestionRecherche;
 public class Map extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -61,9 +62,7 @@ public class Map extends HttpServlet {
 												
 				stationsRes = grecherche.recupereStations(latitude, longitude, carburant, distance);	
 			}						 
-			
-			
-			
+						
 			if(stationsRes != null)
 			{
 				request.getSession().setAttribute("stations", stationsRes);
@@ -122,10 +121,7 @@ public class Map extends HttpServlet {
 				myObj.add("redPicture",  redPig);
 				myObj.add("shapeInfo",  shapeObj);
 	
-				//System.out.println(myObj.toString());
-				
 				out.println(myObj.toString());
-	
 				out.close();
 			}
 	     }
