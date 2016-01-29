@@ -123,6 +123,8 @@ function getStations(distance, typeCarburant, enseigne, adresse)
 	     dataType: 'json',
 	     success:function(datas){
 
+	    	
+	    	 
 	    	 if(datas.stationList)
 	    	 {
 		    	 var stationList = datas.stationList;

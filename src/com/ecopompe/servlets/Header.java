@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Header extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE = "/WEB-INF/VIEWS/INCLUDES/header.jsp";
-       
+	
     public Header() 
     {
         super();
@@ -20,7 +19,7 @@ public class Header extends HttpServlet
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-    	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+    	this.getServletContext().getRequestDispatcher(Constants.VUE).forward(request, response);
 	}
 /*
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

@@ -53,7 +53,7 @@
     <url-pattern>/listepompes</url-pattern>
   </servlet-mapping>
  
-  <filter>
+  <!--  <filter>
       <filter-name>urlRewriteFilter</filter-name>
       <filter-class>com.ecopompe.filters.UrlRewriteFilter</filter-class>
   </filter>
@@ -61,7 +61,8 @@
       <filter-name>urlRewriteFilter</filter-name>
       <url-pattern>/listepompes</url-pattern>
       <url-pattern>/infos</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
+  
   <filter>
       <filter-name>Set Character Encoding</filter-name>
       <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

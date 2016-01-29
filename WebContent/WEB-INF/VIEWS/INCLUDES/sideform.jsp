@@ -18,7 +18,6 @@
 <div class="sidenav col-lg-2 collapse navbar-collapse" id="leftdiv">
 	<div class="well2 sidebar-nav" align="center" id="leftside">
 		<br>
-
 		<form novalidate method="post">
 			<label id="sidetext" for="carb">Carburant</label>
 			<br>
@@ -70,7 +69,7 @@
 				  }
 				%>
 			</select> <br>
-			<br> <input type="button" onClick="updateStationsAndPosition()" name="filtreok" id="filtreok" value="CHERCHER STATIONS">
+			<br> <input type="button" onClick="updateStations()" name="filtreok" id="filtreok" value="CHERCHER STATIONS">
 		</form>
 	</div>
 </div>

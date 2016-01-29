@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Sideform extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE = "/WEB-INF/VIEWS/INCLUDES/sideform.jsp";
-       
+	
     public Sideform() 
     {
         super();
@@ -21,7 +20,7 @@ public class Sideform extends HttpServlet
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-    	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+    	this.getServletContext().getRequestDispatcher(Constants.VUE).forward(request, response);
 	}
 /*
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

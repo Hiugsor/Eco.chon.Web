@@ -15,7 +15,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/okhttp-2.7.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/okio-1.6.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ecopompe2.7.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ecopompe2.8.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

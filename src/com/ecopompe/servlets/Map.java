@@ -23,18 +23,16 @@ import com.processing.GestionRecherche;
 @WebServlet("/Map")
 public class Map extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE = "/WEB-INF/VIEWS/INCLUDES/map.jsp";
-	public static final String MARKER_ICON_DEFAULT = "bootstrap/img/Logo_EcoPomp40.png";
-	public static final String MARKER_ICON_GREEN = "bootstrap/img/Logo_GreenPig.png";
-	public static final String MARKER_ICON_ORANGE = "bootstrap/img/Logo_OrangePig.png";
-	public static final String MARKER_ICON_RED = "bootstrap/img/Logo_RedPig.png";
-	public static final String DEFAULT_TYPE_ENSEIGNE = "toutes";
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		
+		request.setAttribute(Constants.MAIN_PANEL, Constants.PANEL_MAP);	
+		this.getServletContext().getRequestDispatcher(Constants.VUE).forward(request, response);
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -47,11 +45,9 @@ public class Map extends HttpServlet {
 			int distance = Integer.parseInt( request.getParameter("distance"));
 			String carburant = request.getParameter("typeCarburant").toString();
 			
-			
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
 						
-			
 			/*if(!request.getParameter("enseigne").toString().equalsIgnoreCase(DEFAULT_TYPE_ENSEIGNE))
 			{
 			 
@@ -72,77 +68,76 @@ public class Map extends HttpServlet {
 			{
 				Double latitude = Double.parseDouble(request.getParameter("latitude").toString());
 				Double longitude = Double.parseDouble(request.getParameter("longitude").toString());
-								
-				//System.out.println(latitude + " ---- " + longitude );//TEST
-				
+												
 				stationsRes = grecherche.recupereStations(latitude, longitude, carburant, distance);	
 			}						 
 			
 			
-			Picture pictGreen = new Picture();
-			pictGreen.setUrl(MARKER_ICON_GREEN);
 			
-			Picture pictOrange = new Picture();
-			pictOrange.setUrl(MARKER_ICON_ORANGE);
-			
-			Picture pictRed = new Picture();
-			pictRed.setUrl(MARKER_ICON_RED);
-			
-			
-			/*Picture pictDefault = new Picture();
-			pictDefault.setUrl(MARKER_ICON_DEFAULT);*/
-			
-			Point size = new Point();
-			myCoord = new Coordonnees();
-			myCoord.setLatitude(40.0);
-			myCoord.setLongitude(40.0);
-			size.setCoordonnee(myCoord);
-			pictGreen.setSize(size);
-			pictOrange.setSize(size);
-			pictRed.setSize(size);
-			
-			Point origine = new Point();
-			myCoord = new Coordonnees();
-			myCoord.setLatitude(0.0);
-			myCoord.setLongitude(0.0);
-			origine.setCoordonnee(myCoord);
-			pictGreen.setOrigin(origine);
-			pictOrange.setOrigin(origine);
-			pictRed.setOrigin(origine);
-			
-			Point anchor = new Point();
-			myCoord = new Coordonnees();
-			myCoord.setLatitude(0.0);
-			myCoord.setLongitude(55.0);
-			anchor.setCoordonnee(myCoord);
-			pictGreen.setAnchor(anchor);
-			pictOrange.setAnchor(anchor);
-			pictRed.setAnchor(anchor);
-		
-			Shape shape = new Shape();
+			if(stationsRes != null)
+			{
+				request.getSession().setAttribute("stations", stationsRes);
 							
-			PrintWriter out = response.getWriter();
-			Gson gson = new Gson();
-			JsonObject myObj = new JsonObject();
-		 
-			JsonElement stationArrayObj = gson.toJsonTree(stationsRes);
-			JsonElement greenPig = gson.toJsonTree(pictGreen);
-			JsonElement orangePig = gson.toJsonTree(pictOrange);
-			JsonElement redPig = gson.toJsonTree(pictRed);
-			JsonElement shapeObj = gson.toJsonTree(shape);
+				Picture pictGreen = new Picture();
+				pictGreen.setUrl(Constants.MARKER_ICON_GREEN);
+				
+				Picture pictOrange = new Picture();
+				pictOrange.setUrl(Constants.MARKER_ICON_ORANGE);
+				
+				Picture pictRed = new Picture();
+				pictRed.setUrl(Constants.MARKER_ICON_RED);
+							
+				Point size = new Point();
+				myCoord = new Coordonnees();
+				myCoord.setLatitude(40.0);
+				myCoord.setLongitude(40.0);
+				size.setCoordonnee(myCoord);
+				pictGreen.setSize(size);
+				pictOrange.setSize(size);
+				pictRed.setSize(size);
+				
+				Point origine = new Point();
+				myCoord = new Coordonnees();
+				myCoord.setLatitude(0.0);
+				myCoord.setLongitude(0.0);
+				origine.setCoordonnee(myCoord);
+				pictGreen.setOrigin(origine);
+				pictOrange.setOrigin(origine);
+				pictRed.setOrigin(origine);
+				
+				Point anchor = new Point();
+				myCoord = new Coordonnees();
+				myCoord.setLatitude(0.0);
+				myCoord.setLongitude(55.0);
+				anchor.setCoordonnee(myCoord);
+				pictGreen.setAnchor(anchor);
+				pictOrange.setAnchor(anchor);
+				pictRed.setAnchor(anchor);
 			
-			myObj.add("stationList",  stationArrayObj);
-			myObj.add("greenPicture",  greenPig);
-			myObj.add("orangePicture",  orangePig);
-			myObj.add("redPicture",  redPig);
-			myObj.add("shapeInfo",  shapeObj);
-
-			//System.out.println(myObj.toString());
-			
-			
-			out.println(myObj.toString());
-
-			out.close();
+				Shape shape = new Shape();
+								
+				PrintWriter out = response.getWriter();
+				Gson gson = new Gson();
+				JsonObject myObj = new JsonObject();
+			 
+				JsonElement stationArrayObj = gson.toJsonTree(stationsRes);
+				JsonElement greenPig = gson.toJsonTree(pictGreen);
+				JsonElement orangePig = gson.toJsonTree(pictOrange);
+				JsonElement redPig = gson.toJsonTree(pictRed);
+				JsonElement shapeObj = gson.toJsonTree(shape);
+				
+				myObj.add("stationList",  stationArrayObj);
+				myObj.add("greenPicture",  greenPig);
+				myObj.add("orangePicture",  orangePig);
+				myObj.add("redPicture",  redPig);
+				myObj.add("shapeInfo",  shapeObj);
+	
+				//System.out.println(myObj.toString());
+				
+				out.println(myObj.toString());
+	
+				out.close();
+			}
 	     }
 	}
 }
