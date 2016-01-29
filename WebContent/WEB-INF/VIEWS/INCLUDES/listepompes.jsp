@@ -114,8 +114,6 @@
 					else
 					  logo = "bootstrap/img/stations/StationX.png";
 				}
-				
-				System.out.println(logo);
 	%>
 
 	<div id="listepompes">

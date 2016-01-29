@@ -35,17 +35,16 @@ function updateStations()
 	var typeCarburant = document.getElementById("carb").value;
 	var adresse = document.getElementById("depart").value;
 	var distance = document.getElementById("slider").value;
-	var enseigne = document.getElementById("enseigne").value;
 	
 	if(document.getElementById("mapiframe"))
 	{
 		if(adresse && (0 !== adresse.length) && adresse.trim())
 		{
-			document.getElementById("mapiframe").contentWindow.updateArea(typeCarburant,distance,enseigne,adresse);
+			document.getElementById("mapiframe").contentWindow.updateArea(typeCarburant,distance,adresse);
 		}
 		else
 		{
-			document.getElementById("mapiframe").contentWindow.updateArea(typeCarburant,distance,enseigne);
+			document.getElementById("mapiframe").contentWindow.updateArea(typeCarburant,distance);
 		}		
 	}
 }

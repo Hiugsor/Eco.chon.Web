@@ -14,7 +14,7 @@ function initialize()
 	 
 	 parent.userMarker = new parent.google.maps.Marker({
 		    map: parent.myMap,
-		    title: 'You are here !',
+		    title: 'You are here !!',
 		    draggable: true
 		  });
 	 
@@ -73,7 +73,6 @@ function successCallback(position)
 {
 	var defaultDistance = parent.document.getElementById("slider").value; // Distance de recherche par defaut exprimee en km
 	var typeCarburant = parent.document.getElementById("carb").value;
-	var enseigne = parent.document.getElementById("enseigne").value;
 		
 	if(position != null)
 	{		
@@ -94,24 +93,24 @@ function successCallback(position)
 	parent.userMarker.setPosition(parent.currentposition);
 	
 	// Retrieve and add stations on map
-	getStations(defaultDistance,typeCarburant,enseigne);
+	getStations(defaultDistance,typeCarburant);
 	
 	parent.myCircle.setCenter(parent.currentposition);
 	parent.myCircle.setRadius(defaultDistance*1000);
 }
 
 
-function getStations(distance, typeCarburant, enseigne, adresse)
+function getStations(distance, typeCarburant, adresse)
 {
 	var tabDatas;
 		
 	if (typeof adresse === 'undefined')
 	{
-		tabDatas = {latitude:parent.myLat, longitude:parent.myLong, distance:distance, typeCarburant:typeCarburant, enseigne:enseigne};
+		tabDatas = {latitude:parent.myLat, longitude:parent.myLong, distance:distance, typeCarburant:typeCarburant};
 	}
 	else
 	{
-		tabDatas = {latitude:parent.myLat, longitude:parent.myLong, distance:distance, typeCarburant:typeCarburant, enseigne:enseigne, adresse:adresse};
+		tabDatas = {latitude:parent.myLat, longitude:parent.myLong, distance:distance, typeCarburant:typeCarburant, adresse:adresse};
 	}
 	
 	$.ajax({
@@ -220,17 +219,28 @@ function getStations(distance, typeCarburant, enseigne, adresse)
 					stationLong = StationCoordonates.lng();			
 					
 					var prixCarburants = stationList[this.numero].carburants;
-					var stringListeCarburant = "<h3>Carburant</h3>";
+					var stringListeCarburant = "<div class=\"iw-subTitle2\">Carburants</div>";
 					prixCarburants.forEach(function(entry){
 								var prixCarbu = (parseInt(entry.prix)/1000);
-								stringListeCarburant += entry.nom + " : " + prixCarbu + " €<br/>";
+								stringListeCarburant += entry.nom + " : " + prixCarbu + " &euro;<br/>";
 							});
 					
-					var contentString = "<h2>Station : " + stationList[this.numero].nom + "</h2>" + /*"</h2> Lat : " + stationList[this.numero].adresse.position.coordonnee.latitude + "<br/> Long : " + stationList[this.numero].adresse.position.coordonnee.longitude + */"<br/> Adresse : " + stationList[this.numero].adresse.rue + "<br/> CP : " + stationList[this.numero].adresse.codepostal + "<br/> Ville : " + stationList[this.numero].adresse.ville.toUpperCase() + "<br/><hr size=\"1\">" + stringListeCarburant + "<br/><br/><input type='button' onClick=calculateAndDisplayRoute(stationLat,stationLong); value='Go !'>";
+					var contentString = "<div id=\"iw-container\"><div class=\"iw-title\"><u>Station</u> <i>" + stationList[this.numero].nom + "</i> [" + stationList[this.numero].distance.toFixed(2) + " km]</div>" + /* "Lat : " + stationList[this.numero].adresse.position.coordonnee.latitude + "<br/> Long : " + stationList[this.numero].adresse.position.coordonnee.longitude + */
+										"<div class=\"iw-content\"> <div class=\"iw-subTitle\">" + stationList[this.numero].adresse.rue + "</div> <img src=\"bootstrap/img/stations/StationX.png\" alt=\"Image station\" height=\"83\" width=\"83\">" +
+										"<div class=\"iw-subTitle\">" + stationList[this.numero].adresse.codepostal + "&nbsp;" + 
+										stationList[this.numero].adresse.ville.toUpperCase() + "</div> <hr size=\"1\">" + 
+										stringListeCarburant + "<br><div align='center'><input type='button' onClick='calculateAndDisplayRoute(stationLat,stationLong);' id='btnGo' value='GO !'></div> </div> <br><br>" + 
+										"</div>";   // <div class=\"iw-bottom-gradient\"></div>
 
 					infowin.setContent(contentString);
-					infowin.open(this.getMap(), this);			
-				  });	
+					infowin.open(this.getMap(), this);
+					
+					customizeInfoWindow(infowin);
+					
+					google.maps.event.addListener(map, 'click', function() {
+					    infowin.close();
+					  });
+				  });
 				  
 				  //Ajout du marker dans le tableau de markers
 				  parent.markers.push(mark);
@@ -240,6 +250,55 @@ function getStations(distance, typeCarburant, enseigne, adresse)
 	      error: function (request, status, error) {
 	          alert(request.responseText);
 	      }  
+	  });
+}
+
+function customizeInfoWindow(infowindow)
+{
+	google.maps.event.addListener(infowindow, 'domready', function() {
+
+	    // Reference to the DIV that wraps the bottom of infowindow
+	    var iwOuter = $(".gm-style-iw");
+
+	    /* Since this div is in a position prior to .gm-div style-iw.
+	     * We use jQuery and create a iwBackground variable,
+	     * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+	    */
+	    var iwBackground = iwOuter.prev();
+
+	    // Removes background shadow DIV
+	    iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+	    // Removes white background DIV
+	    iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+	    // Moves the infowindow 115px to the right.
+	    iwOuter.parent().parent().css({left: '115px'});
+
+	    // Moves the shadow of the arrow 76px to the left margin.
+	    iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+
+	    // Moves the arrow 76px to the left margin.
+	    iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+
+	    // Changes the desired tail shadow color.
+	    iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+	    
+	    // Reference to the div that groups the close button elements.
+	    var iwCloseBtn = iwOuter.next();
+
+	    /*
+	    // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+	    if($('.iw-content').height() < 250){
+	      $('.iw-bottom-gradient').css({display: 'none'});
+	    }
+	    */
+	    
+	    // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+	    iwCloseBtn.mouseout(function(){
+	      $(this).css({opacity: '1'});
+	    });
+	    
 	  });
 }
 
@@ -285,7 +344,7 @@ function deleteMarkers()
 }
 
 
-function updateArea(typeCarburant, distance, enseigne, adresse)
+function updateArea(typeCarburant, distance, adresse)
 {
 	var distance = parseInt(distance);
 		
@@ -298,11 +357,11 @@ function updateArea(typeCarburant, distance, enseigne, adresse)
 	
 	if (typeof adresse === 'undefined')
 	{
-		getStations(distance,typeCarburant,enseigne);
+		getStations(distance,typeCarburant);
 	}
 	else
 	{
-		getStations(distance,typeCarburant,enseigne,adresse);
+		getStations(distance,typeCarburant,adresse);
 	}
 }
 

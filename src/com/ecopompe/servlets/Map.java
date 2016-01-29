@@ -28,7 +28,6 @@ public class Map extends HttpServlet {
 	public static final String MARKER_ICON_GREEN = "bootstrap/img/Logo_GreenPig.png";
 	public static final String MARKER_ICON_ORANGE = "bootstrap/img/Logo_OrangePig.png";
 	public static final String MARKER_ICON_RED = "bootstrap/img/Logo_RedPig.png";
-	public static final String DEFAULT_TYPE_ENSEIGNE = "toutes";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -41,26 +40,15 @@ public class Map extends HttpServlet {
 		GestionRecherche grecherche = new GestionRecherche();
 		Coordonnees myCoord = new Coordonnees();
 				
-		if (request.getParameterMap().containsKey("latitude") && request.getParameterMap().containsKey("longitude") && request.getParameterMap().containsKey("distance") && request.getParameterMap().containsKey("typeCarburant") && request.getParameterMap().containsKey("enseigne"))
+		if (request.getParameterMap().containsKey("latitude") && request.getParameterMap().containsKey("longitude") && request.getParameterMap().containsKey("distance") && request.getParameterMap().containsKey("typeCarburant"))
 		{
 			ArrayList<Station> stationsRes = null;
 			int distance = Integer.parseInt( request.getParameter("distance"));
 			String carburant = request.getParameter("typeCarburant").toString();
 			
-			
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
-						
-			
-			/*if(!request.getParameter("enseigne").toString().equalsIgnoreCase(DEFAULT_TYPE_ENSEIGNE))
-			{
-			 
-			}
-			else
-			{
-				 
-			}*/
-			 
+									 
 			if(request.getParameterMap().containsKey("adresse"))
 			{
 				String adresse = request.getParameter("adresse").toString();
@@ -136,9 +124,6 @@ public class Map extends HttpServlet {
 			myObj.add("orangePicture",  orangePig);
 			myObj.add("redPicture",  redPig);
 			myObj.add("shapeInfo",  shapeObj);
-
-			//System.out.println(myObj.toString());
-			
 			
 			out.println(myObj.toString());
 
